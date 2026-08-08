@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useCallback } from 'react';
+import React, { useEffect, useState } from 'react';
 import colors from '../../constants/colors';
 import twitterIcon from '../../assets/pictures/contact-twitter.png';
 import ghIcon from '../../assets/pictures/contact-gh.png';
@@ -49,53 +49,61 @@ const Contact: React.FC<ContactProps> = (props) => {
     }, [email, name, message]);
 
     async function submitForm() {
-        if (!isFormValid) {
-            setFormMessage('Form unable to validate, please try again.');
-            setFormMessageColor('red');
-            return;
-        }
-        try {
-            setIsLoading(true);
-            const res = await fetch(
-                'https://api.henryheffernan.com/api/contact',
-                {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({
-                        company,
-                        email,
-                        name,
-                        message,
-                    }),
-                }
-            );
-            // the response will be either {success: true} or {success: false, error: message}
-            const data = (await res.json()) as
-                | {
-                      success: false;
-                      error: string;
-                  }
-                | { success: true };
-            if (data.success) {
-                setFormMessage(`Message successfully sent. Thank you ${name}!`);
-                setCompany('');
-                setEmail('');
-                setName('');
-                setMessage('');
-                setFormMessageColor(colors.blue);
-                setIsLoading(false);
-            } else {
-                setFormMessage(data.error);
-                setFormMessageColor(colors.red);
-                setIsLoading(false);
-            }
-        } catch (e) {
+        if (!isFormValid || isLoading) return;
+
+        setIsLoading(true);
+        setFormMessage('');
+
+        const accessKey = process.env.REACT_APP_WEB3FORMS_ACCESS_KEY;
+        if (!accessKey) {
             setFormMessage(
-                'There was an error sending your message. Please try again.'
+                'Contact form is not configured yet. Please email me directly at nabarunkar01@gmail.com.'
             );
             setFormMessageColor(colors.red);
+            setIsLoading(false);
+            return;
+        }
+
+        try {
+            const response = await fetch('https://api.web3forms.com/submit', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    Accept: 'application/json',
+                },
+                body: JSON.stringify({
+                    access_key: accessKey,
+                    name,
+                    email,
+                    company: company || 'N/A',
+                    message,
+                }),
+            });
+
+            const result = await response.json();
+
+            if (response.ok && result.success) {
+                setFormMessage(
+                    'Message sent successfully! I will get back to you soon.'
+                );
+                setFormMessageColor(colors.blue);
+                setName('');
+                setEmail('');
+                setCompany('');
+                setMessage('');
+            } else {
+                setFormMessage(
+                    result.message ||
+                        'Something went wrong. Please try again or email me directly.'
+                );
+                setFormMessageColor(colors.red);
+            }
+        } catch (error) {
+            setFormMessage(
+                'Network error. Please check your connection and try again.'
+            );
+            setFormMessageColor(colors.red);
+        } finally {
             setIsLoading(false);
         }
     }
@@ -116,21 +124,17 @@ const Contact: React.FC<ContactProps> = (props) => {
                 <div style={styles.socials}>
                     <SocialBox
                         icon={ghIcon}
-                        link={'https://github.com/henryjeff'}
+                        link={'https://github.com/NabarunKar'}
                     />
                     <SocialBox
                         icon={inIcon}
-                        link={'https://www.linkedin.com/in/henryheffernan/'}
-                    />
-                    <SocialBox
-                        icon={twitterIcon}
-                        link={'https://twitter.com/henryheffernan'}
+                        link={'https://www.linkedin.com/in/nabarun-kar/'}
                     />
                 </div>
             </div>
             <div className="text-block">
                 <p>
-                    I am currently employed, however if you have any
+                    I am actively looking for full-time opportunities. If you have any
                     opportunities, feel free to reach out - I would love to
                     chat! You can reach me via my personal email, or fill out
                     the form below!
@@ -138,8 +142,8 @@ const Contact: React.FC<ContactProps> = (props) => {
                 <br />
                 <p>
                     <b>Email: </b>
-                    <a href="mailto:henryheffernan@gmail.com">
-                        henryheffernan@gmail.com
+                    <a href="mailto:nabarunkar01@gmail.com">
+                        nabarunkar01@gmail.com
                     </a>
                 </p>
 

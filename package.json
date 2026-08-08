@@ -2,6 +2,9 @@
   "name": "portfolio-website",
   "version": "0.1.0",
   "private": true,
+  "overrides": {
+    "memfs": "3.5.3"
+  },
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.2",
     "@testing-library/react": "^12.1.4",
@@ -18,6 +21,7 @@
     "react-router": "^6.22.3",
     "react-router-dom": "^6.2.2",
     "react-scripts": "5.0.0",
+    "simple-icons": "^16.28.0",
     "typescript": "^4.6.2",
     "usehooks-ts": "^2.5.1",
     "web-vitals": "^2.1.4"

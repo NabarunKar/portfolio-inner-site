@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from '../general';
 import forHire from '../../assets/pictures/forHireGif.gif';
-import { useLocation, useNavigate } from 'react-router';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 export interface VerticalNavbarProps {}
 
@@ -32,9 +32,9 @@ const VerticalNavbar: React.FC<VerticalNavbarProps> = (props) => {
     return !isHome ? (
         <div style={styles.navbar}>
             <div style={styles.header}>
-                <h1 style={styles.headerText}>Henry</h1>
-                <h1 style={styles.headerText}>Heffernan</h1>
-                <h3 style={styles.headerShowcase}>Showcase '22</h3>
+                <h1 style={styles.headerText}>Nabarun</h1>
+                <h1 style={styles.headerText}>Kar</h1>
+                <h3 style={styles.headerShowcase}>Showcase</h3>
             </div>
             <div style={styles.links}>
                 <Link containerStyle={styles.link} to="" text="HOME" />
@@ -57,10 +57,19 @@ const VerticalNavbar: React.FC<VerticalNavbarProps> = (props) => {
                     // if current path contains projects
                     projectsExpanded && (
                         <div style={styles.insetLinks}>
+                            {/* Developer note: Category sub-navigation is currently disabled.
+                                `/projects` now redirects directly to the main catalog page.
+                                The nested links below are preserved (commented out) for
+                                future expansion when additional project categories are
+                                re-enabled. */}
+                            {/* Developer note: Music and Art sections are temporarily shelved.
+                                These links are preserved (commented out) for future expansion
+                                when those project pages are ready to be re-enabled. */}
+                            {/*
                             <Link
                                 containerStyle={styles.insetLink}
                                 to="projects/software"
-                                text="SOFTWARE"
+                                text="PROJECTS"
                             />
                             <Link
                                 containerStyle={styles.insetLink}
@@ -72,6 +81,7 @@ const VerticalNavbar: React.FC<VerticalNavbarProps> = (props) => {
                                 to="projects/art"
                                 text="ART"
                             />
+                            */}
                         </div>
                     )
                 }

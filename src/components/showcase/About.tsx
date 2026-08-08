@@ -12,23 +12,18 @@ const About: React.FC<AboutProps> = (props) => {
         <div className="site-page-content">
             {/* <img src={me} style={styles.topImage} alt="" /> */}
             <h1 style={{ marginLeft: -16 }}>Welcome</h1>
-            <h3>I'm Henry Heffernan</h3>
+            <h3>I'm Nabarun Kar</h3>
             <br />
             <div className="text-block">
                 <p>
-                    I'm a software engineer currently working at Vercel! In May
-                    of 2022 I graduated from Rensselaer Polytechnic Institute
-                    with my BS in Computer Science.
+                    I’m Nabarun Kar, a Software Engineer focused on AI/ML and backend systems. I recently graduated with a Master's degree in Computer Science from Texas A&M University (2024–2026) after completing my B.Tech in Computer Science at St. Thomas’ College of Engineering and Technology.
                 </p>
                 <br />
                 <p>
-                    Thank you for taking the time to check out my portfolio. I
-                    really hope you enjoy exploring it as much as I enjoyed
-                    building it. If you have any questions or comments, feel
-                    free to contact me using{' '}
-                    <Link to="/contact">this form</Link> or shoot me an email at{' '}
-                    <a href="mailto:henryheffernan@gmail.com">
-                        henryheffernan@gmail.com
+                    Thanks for taking the time to explore my portfolio. This OS-style experience is my way of combining software engineering with creative technology. If you’d like to connect, feel free to use the contact form or email me at{' '}
+                    <Link to="/contact">the contact form</Link> or email me at{' '}
+                    <a href="mailto:nabarunkar01@gmail.com">
+                        nabarunkar01@gmail.com
                     </a>
                 </p>
             </div>
@@ -37,53 +32,33 @@ const About: React.FC<AboutProps> = (props) => {
                 <h3>About Me</h3>
                 <br />
                 <p>
-                    From a young age, I have had a curiosity about how things
-                    worked. This naturally led me to become absolutely obsessed
-                    with Lego and I fell in love with building things. In
-                    elementary school, I joined the Lego Robotics team at my
-                    local middle school, which was my first real exposure to
-                    programming. In 2008, my family and I moved across the
-                    country from California to New York, where I attended middle
-                    school, high school, and college.
+                    I enjoy building products that are reliable, scalable, and genuinely useful. And also deploying them! Over the past few years I’ve worked across full-stack development, backend services, and applied AI, and I’m especially interested in turning prototypes into production-ready systems. I believe I have learnt a lot from deploying these projects, almost as much as from the actual development itself.
                 </p>
                 <br />
                 <div className="captioned-image">
                     <img src={me} style={styles.image} alt="" />
                     <p>
                         <sub>
-                            <b>Figure 1:</b> A real photo of me developing this
-                            website :)
+                            <b>Figure 1:</b> A snapshot from my journey in
+                            software and research—always learning, building,
+                            and iterating.
                         </sub>
                     </p>
                 </div>
 
                 <p>
-                    I started programming more seriously in high school,
-                    initially learning how to scrape and interact with websites.
-                    I went on to do a ton of passion projects, many of them with
-                    one of my closest friends,{' '}
-                    <a
-                        rel="noreferrer"
-                        target="_blank"
-                        href="https://www.linkedin.com/in/scott-bass-189a7919b/"
-                    >
-                        Scott Bass
-                    </a>
-                    . We worked on many projects together, including chat bots,
-                    multiple game projects, apps, and more. One of these
-                    projects is viewable on my{' '}
-                    <Link to="/projects/software">Software Projects</Link> page.
+                    Professionally, I’ve worked in roles ranging from
+                    application engineering to applied AI. Most recently, I’ve
+                    contributed to projects involving backend services, data
+                    pipelines, and AI-powered features, learning how to balance
+                    performance, maintainability, and product needs.
                 </p>
                 <br />
                 <p>
-                    In 2017, I got accepted into Rennselear Polytechnic
-                    Institute to study Computer Science. It was my first choice
-                    and I was absolutely ecstatic to be going to such a great
-                    university. At the end of my sophomore year, I got an
-                    internship working for the startup Hover, primarily focusing
-                    on frontend work. I continued to work at Hover on and off
-                    for about a year and a half, until the start of my senior
-                    year when I decided to focus on other opportunities.
+                    My experience includes working as an AI Engineering Intern
+                    at Texas Capital Bank, a Data Engineer at
+                    Accenture, and a Graduate Engineer Intern at LTIMindtree.
+                    I have been incredbily fortunate to work with some really smart people during these stints, and I have learned a lot from them.
                 </p>
                 <br />
                 <br />
@@ -99,30 +74,27 @@ const About: React.FC<AboutProps> = (props) => {
                         <h3>My Hobbies</h3>
                         <br />
                         <p>
-                            Beyond software, I have a lot of hobbies that I
-                            enjoy doing in my free time. The more tangible
-                            hobbies I have are{' '}
-                            <Link to="/projects/music">Music Production</Link>{' '}
-                            and creating{' '}
-                            <Link to="/projects/art">Digital Art</Link>. You can
-                            read more about each of these on their respective
-                            pages under my projects tab. Some other hobbies I
-                            enjoy are working out, cooking, and (unsurprisingly)
-                            playing video games.
+                            Beyond work, I’m interested in films and music. I’m also passionate about
+                            AI/ML,
+                            cloud infrastructure, backend systems, and creative
+                            technology. I enjoy exploring projects that
+                            mix engineering with design and one of my hobbies—whether that’s
+                            experimentation with interactive UI, tooling, or
+                            side projects that start as simple ideas and grow
+                            into full applications.
                         </p>
                         <br />
                         <p>
-                            In college, I was an active member in the fraternity
-                            Sigma Alpha Epsilon and held multiple positions in
-                            the chapter. I met a lot of amazing people through
-                            my fraternity and thoroughly enjoyed the community.
+                            I’m happiest when I’m building something end-to-end:
+                            defining the problem, designing the system,
+                            implementing it, and polishing the experience.
                         </p>
                     </div>
                     <div style={styles.verticalImage}>
                         <img src={meNow} style={styles.image} alt="" />
                         <p>
                             <sub>
-                                <b>Figure 2:</b> Me, April 2022
+                                <b>Figure 2:</b> Nabarun Kar
                             </sub>
                         </p>
                     </div>
@@ -130,27 +102,16 @@ const About: React.FC<AboutProps> = (props) => {
                 <br />
                 <br />
                 <p>
-                    Thanks for reading about me! I hope that you enjoy exploring
-                    the rest of my portfolio website and everything it has to
-                    offer. If you find the easter egg make sure to let me know
-                    on twitter{' '}
-                    <a
-                        rel="noreferrer"
-                        target="_blank"
-                        href="https://twitter.com/henryheffernan"
-                    >
-                        @henryheffernan
-                    </a>{' '}
-                    Good luck and have fun!
+                    Thanks for reading! I hope you enjoy exploring the rest of
+                    my portfolio and the projects inside it.
                 </p>
                 <br />
                 <p>
-                    If you have any questions or comments I would love to hear
-                    them. You can reach me through the{' '}
-                    <Link to="/contact">contact page</Link> or shoot me an email
-                    at{' '}
-                    <a href="mailto:henryheffernan@gmail.com">
-                        henryheffernan@gmail.com
+                    If you’d like to chat about full-time roles
+                    or any sort of collaboration, you can reach me through the{' '}
+                    <Link to="/contact">contact page</Link> or email me at{' '}
+                    <a href="mailto:nabarunkar01@gmail.com">
+                        nabarunkar01@gmail.com
                     </a>
                 </p>
             </div>

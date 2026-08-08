@@ -1,106 +1,56 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router';
-import software from '../../assets/pictures/projects/software.gif';
-import art from '../../assets/pictures/projects/art.gif';
-import music from '../../assets/pictures/projects/music.gif';
+import React from 'react';
+import { Navigate } from 'react-router-dom';
 
 export interface ProjectsProps {}
 
-interface ProjectBoxProps {
-    icon: string;
-    title: string;
-    subtitle: string;
-    route: string;
-    iconStyle: React.CSSProperties;
-}
-
-const ProjectBox: React.FC<ProjectBoxProps> = ({
-    icon,
-    title,
-    subtitle,
-    route,
-    iconStyle,
-}) => {
-    const [, setIsHovering] = useState(false);
-    const navigation = useNavigate();
-
-    const handleClick = () => {
-        navigation(`/projects/${route}`);
-    };
-
-    const onMouseEnter = () => {
-        setIsHovering(true);
-    };
-
-    const onMouseLeave = () => {
-        setIsHovering(false);
-    };
-
+const Projects: React.FC<ProjectsProps> = (props) => {
+    // Projects now directly opens the main project catalog.
+    // Music and Art sections are temporarily shelved. The code is preserved for future expansion when additional projects are ready.
     return (
-        <div
-            onMouseDown={handleClick}
-            className="big-button-container"
-            style={styles.projectLink}
-            onMouseEnter={onMouseEnter}
-            onMouseLeave={onMouseLeave}
-        >
-            <div style={styles.projectLinkLeft}>
-                <img
-                    src={icon}
-                    style={Object.assign(
-                        {},
-                        styles.projectLinkImage,
-                        iconStyle
-                    )}
-                    alt=""
-                />
-                <div style={styles.projectText}>
-                    <h1 style={{ fontSize: 48 }}>{title}</h1>
-                    <h3>{subtitle}</h3>
+        <>
+            <Navigate to="/projects/software" replace />
+
+            {/*
+            Previous category selection UI preserved for future expansion.
+
+            <div className="site-page-content">
+                <h1>Projects</h1>
+                <h3>& Hobbies</h3>
+                <br />
+                <p>
+                    Click on one of the areas below to check out some of my favorite
+                    projects I've done in that field.
+                </p>
+                <br />
+                <div style={styles.projectLinksContainer}>
+                    <ProjectBox
+                        icon={software}
+                        iconStyle={styles.computerIcon}
+                        title="Software"
+                        subtitle="PROJECTS"
+                        route="software"
+                    />
+                    
+                    // Music and Art sections are temporarily shelved. The code is preserved for future expansion when additional projects are ready.
+                    
+                    <ProjectBox
+                        icon={music}
+                        iconStyle={styles.musicIcon}
+                        title="Music"
+                        subtitle="VENTURES"
+                        route="music"
+                    />
+                    <ProjectBox
+                        icon={art}
+                        iconStyle={styles.artIcon}
+                        title="Art"
+                        subtitle="ENDEAVORS"
+                        route="art"
+                    />
                 </div>
             </div>
-            <div style={styles.projectLinkRight}></div>
-        </div>
-    );
-};
-
-const Projects: React.FC<ProjectsProps> = (props) => {
-    return (
-        <div className="site-page-content">
-            <h1>Projects</h1>
-            <h3>& Hobbies</h3>
-            <br />
-            <p>
-                Click on one of the areas below to check out some of my favorite
-                projects I've done in that field. I spent a lot of time to
-                include a lot of visuals and interactive media to showcase each
-                project. Enjoy!
-            </p>
-            <br />
-            <div style={styles.projectLinksContainer}>
-                <ProjectBox
-                    icon={software}
-                    iconStyle={styles.computerIcon}
-                    title="Software"
-                    subtitle="PROJECTS"
-                    route="software"
-                />
-                <ProjectBox
-                    icon={music}
-                    iconStyle={styles.musicIcon}
-                    title="Music"
-                    subtitle="VENTURES"
-                    route="music"
-                />
-                <ProjectBox
-                    icon={art}
-                    iconStyle={styles.artIcon}
-                    title="Art"
-                    subtitle="ENDEAVORS"
-                    route="art"
-                />
-            </div>
-        </div>
+            */}
+        </>
     );
 };
 

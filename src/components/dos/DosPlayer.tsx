@@ -37,7 +37,9 @@ export default function DosPlayer(props: PlayerProps) {
 
     useEffect(() => {
         if (dos !== null) {
-            dos.run(props.bundleUrl);
+            // Ensure js-dos bundles are always fetched from the public root,
+            // regardless of the current React Router path.
+            dos.run(`/${props.bundleUrl.replace(/^\/+/, '')}`);
         }
     }, [dos, props.bundleUrl]);
     return (

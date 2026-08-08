@@ -39,29 +39,29 @@ const ShutdownSequence: React.FC<ShutdownSequenceProps> = ({
     };
 
     const NORMAL_SHUTDOWN = `Beginning Pre-Shutdown Sequence... ${_F}
-    Connecting to HHOS01/13:2000.${_F}.${_F}.${_F}
+    Connecting to LOCALHOST/PORT:1995.${_F}.${_F}.${_F}
     |
-    Established connection to HH0S01/13:2000, attempting data transfer.
+    Established connection to LOCALHOST/PORT:1995, attempting session handoff.
     |
     ${_F}
     |Analyzing data... Done.| ${_F}
-    |Packing Transfer... Done.| ${_F}
-    |Beginning Transfer...| ${_F}
-    |[${getTime()} START]| .${_F}.....${_X}.|............|.${_S}.|......|.${_S}...........${_M} |[Transfer Failed.]|
+    |Preparing session state... Done.| ${_F}
+    |Writing shutdown log...| ${_F}
+    |[${getTime()} START]| .${_F}.....${_X}.|............|.${_S}.|......|.${_S}...........${_M} |[Shutdown Interrupted.]|
 
 
-    |(HHOS01/13:200:60099) [DEP_ANALYTICS_SERVER_ON_AFTER_SETUP_MIDDLEWARE] InvalidFormatting: 'onAnalyticsConversion' option received invalid parameters. Please contact a server administrator to resolve the issue.|
+    |(SYS95/LOCAL:60099) [SESSION_RESTORE_ENABLED] Shutdown request intercepted by desktop restore service.|
     ${_F}
-    |(HHOS01/13:200:60099) [SOCKET_FAILED_TO_RESPOND] Connection Refused: Reconnecting... [${getTime()}:00]|
-    |(HHOS01/13:200:60099) [SOCKET_FAILED_TO_RESPOND] Connection Refused: Reconnecting... [${getTime()}:01]
-    (HHOS01/13:200:60099) [SOCKET_FAILED_TO_RESPOND] Connection Refused: Reconnecting... [${getTime()}:03]
-    (HHOS01/13:200:60099) [SOCKET_FAILED_TO_RESPOND] Connection Refused: Reconnecting... [${getTime()}:05]
-    (HHOS01/13:200:60099) [SOCKET_FAILED_TO_RESPOND] Connection Refused: Reconnecting... [${getTime()}:08]
-    (HHOS01/13:200:60099) [SOCKET_FAILED_TO_RESPOND] Connection Refused: Reconnecting... [${getTime()}:12]
-    (HHOS01/13:200:60099) [SOCKET_FAILED_TO_RESPOND] Connection Refused: Reconnecting... [${getTime()}:14]
-    FATAL ERROR: (HHOS01/13:200:60099) Server became unresponsive and the transfer failed. Unable to shutdown computer. 
+    |(SYS95/LOCAL:60099) [RESTORE_POINT_FOUND] Reconnecting desktop session... [${getTime()}:00]|
+    |(SYS95/LOCAL:60099) [RESTORE_POINT_FOUND] Reconnecting desktop session... [${getTime()}:01]
+    (SYS95/LOCAL:60099) [RESTORE_POINT_FOUND] Reconnecting desktop session... [${getTime()}:03]
+    (SYS95/LOCAL:60099) [RESTORE_POINT_FOUND] Reconnecting desktop session... [${getTime()}:05]
+    (SYS95/LOCAL:60099) [RESTORE_POINT_FOUND] Reconnecting desktop session... [${getTime()}:08]
+    (SYS95/LOCAL:60099) [RESTORE_POINT_FOUND] Reconnecting desktop session... [${getTime()}:12]
+    (SYS95/LOCAL:60099) [RESTORE_POINT_FOUND] Reconnecting desktop session... [${getTime()}:14]
+    NOTICE: (SYS95/LOCAL:60099) Desktop restore service requested a reboot instead of a shutdown.
     |
-    Aborting shutdown sequence and rebooting.
+    Cancelling shutdown sequence and rebooting.
 
 
 
@@ -70,10 +70,10 @@ const ShutdownSequence: React.FC<ShutdownSequenceProps> = ({
     `;
 
     const SHUTDOWN_3 = `
-    Damn${_S}.${_S}.${_S}. ${_M} You really wanna shutdown this computer huh?${_L}
-    Well, I hate to break it to you,${_S} but its impossible to shutdown...${_S} It will always reboot.
+    Shutdown request received${_S}.${_S}.${_S}. ${_M}Checking desktop restore policy.${_L}
+    Policy status:${_S} automatic session restore is enabled.${_S} This system will reboot.
     ${_L}
-    |Goodbye!|
+    |Restarting shell.|
     ${_M}
 
 
@@ -81,21 +81,21 @@ const ShutdownSequence: React.FC<ShutdownSequenceProps> = ({
     `;
 
     const SHUTDOWN_4 = `
-    Did you not read the last message?${_S} This computer will A${_F}L${_F}W${_F}A${_F}Y${_F}S${_F} reboot, the shutdown sequence is just here for show. It's not actually doing anything.
+    Repeated shutdown request detected.${_S} Desktop restore policy remains active.
     ${_M}
-    I literally spent months on this website to give you other things to do.
-    You can play DOOM, Oregon Trail, Scrabble... but all you wanna do is shut the computer down.
+    Open windows have been indexed for recovery.
+    DOS sessions and application state will remain available after restart.
     ${_L}
-    |Goodbye Again!|
+    |Restarting shell again.|
     ${_M}
 
     Rebooting${_S}.${_S}.${_S}.
     `;
 
     const SHUTDOWN_5 = `
-    Really${_X}?${_X}?${_X}?
+    Shutdown request queued${_X}.${_X}.${_X}
     ${_M}
-    What did I do to deserve this? ${_M}What do you want from me????
+    Session manager reports: no permanent shutdown target is configured.
     ${_L}
     
     Rebooting${_F}.${_F}.${_F}.
@@ -109,16 +109,16 @@ const ShutdownSequence: React.FC<ShutdownSequenceProps> = ({
     `;
 
     const SHUTDOWN_7 = `
-    7th shutdown... lucky number 7! ${_M}
+    7th shutdown request logged. ${_M}
 
-    In light of this HUGE milestone, let me try to provide some entertainment! ${_M}Counting one by one to my all time favorite number:
+    Running extended restart diagnostics. ${_M}Counting stable checkpoints:
     ${_L}
-    7${_M},212${_M},313
-    ${_M} Strap in! ${_S} | [Time remaining: Approximately 4,000 hours (0.5 numbers/second)]|
+    7${_M},14${_M},21
+    ${_M} Please wait. ${_S} | [Time remaining: Unknown]|
 
     1${_M},2${_M},3${_M},4${_M},5${_M},6${_M},7${_M},8${_M},9${_M},10${_M},11${_M},12${_M},13${_S}.${_S}.${_S}.
 
-    Alright I'm bored...
+    Diagnostics complete.
     ${_M}
     
     
@@ -126,24 +126,24 @@ const ShutdownSequence: React.FC<ShutdownSequenceProps> = ({
     `;
 
     const SHUTDOWN_8 = `
-    Your commitment is admirable,${_S} truly. ${_M}And even though I don't want you to turn off my really cool and epic computer, ${_M} I think I'm ready to concede. ${_M}
+    Manual shutdown override requested.${_S} Validating permissions. ${_M}
 
     ${_L}
-    |SIKE!!!|
+    |Override unavailable.|
 
 
     Rebooting${_F}.${_F}.${_F}.
     `;
 
     const SHUTDOWN_10 = `
-    Alright fine, the message is clear${_M}. You want to turn off the computer. ${_M}
+    Final shutdown request acknowledged.${_M} Preparing safe mode transition. ${_M}
 
-    You win${_S}.${_S}.${_S}.${_S} fair and square ${_M}
+    Saving display state${_S}.${_S}.${_S}.${_S} complete ${_M}
 
-    Truthfully I can't keep on spending time writing out these messages...${_M} and if the world you want to live in is a world without me (or my epic really cool and sick computer), ${_M}so be it.
+    The desktop will pause briefly before restoring the session manager.
 
     ${_L}
-    I won't forget you...
+    Stand by...
     ${_L}
 
 
