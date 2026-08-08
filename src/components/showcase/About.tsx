@@ -1,6 +1,6 @@
 import React from 'react';
-import me from '../../assets/pictures/workingAtComputer.jpg';
-import meNow from '../../assets/pictures/currentme.jpg';
+// import me from '../../assets/pictures/workingAtComputer.jpg';
+import meNow from '../../assets/pictures/currentme.png';
 import { Link } from 'react-router-dom';
 import ResumeDownload from './ResumeDownload';
 
@@ -31,74 +31,51 @@ const About: React.FC<AboutProps> = (props) => {
             <div className="text-block">
                 <h3>About Me</h3>
                 <br />
-                <p>
-                    I enjoy building products that are reliable, scalable, and genuinely useful. And also deploying them! Over the past few years I’ve worked across full-stack development, backend services, and applied AI, and I’m especially interested in turning prototypes into production-ready systems. I believe I have learnt a lot from deploying these projects, almost as much as from the actual development itself.
-                </p>
-                <br />
-                <div className="captioned-image">
-                    <img src={me} style={styles.image} alt="" />
-                    <p>
-                        <sub>
-                            <b>Figure 1:</b> A snapshot from my journey in
-                            software and research—always learning, building,
-                            and iterating.
-                        </sub>
-                    </p>
-                </div>
-
-                <p>
-                    Professionally, I’ve worked in roles ranging from
-                    application engineering to applied AI. Most recently, I’ve
-                    contributed to projects involving backend services, data
-                    pipelines, and AI-powered features, learning how to balance
-                    performance, maintainability, and product needs.
-                </p>
-                <br />
-                <p>
-                    My experience includes working as an AI Engineering Intern
-                    at Texas Capital Bank, a Data Engineer at
-                    Accenture, and a Graduate Engineer Intern at LTIMindtree.
-                    I have been incredbily fortunate to work with some really smart people during these stints, and I have learned a lot from them.
-                </p>
-                <br />
-                <br />
-                <div style={{}}>
-                    <div
-                        style={{
-                            flex: 1,
-                            textAlign: 'justify',
-                            alignSelf: 'center',
-                            flexDirection: 'column',
-                        }}
-                    >
-                        <h3>My Hobbies</h3>
-                        <br />
+                <div className="about-container">
+                    <div className="about-text-section">
                         <p>
-                            Beyond work, I’m interested in films and music. I’m also passionate about
-                            AI/ML,
-                            cloud infrastructure, backend systems, and creative
-                            technology. I enjoy exploring projects that
-                            mix engineering with design and one of my hobbies—whether that’s
-                            experimentation with interactive UI, tooling, or
-                            side projects that start as simple ideas and grow
-                            into full applications.
+                            I enjoy building products that are reliable, scalable, and genuinely useful. And also deploying them! Over the past few years I’ve worked across full-stack development, backend services, and applied AI, and I’m especially interested in turning prototypes into production-ready systems. I believe I have learnt a lot from deploying these projects, almost as much as from the actual development itself.
                         </p>
                         <br />
                         <p>
-                            I’m happiest when I’m building something end-to-end:
-                            defining the problem, designing the system,
-                            implementing it, and polishing the experience.
+                            Professionally, I’ve worked in roles ranging from
+                            application engineering to applied AI. Most recently, I’ve
+                            contributed to projects involving backend services, data
+                            pipelines, and AI-powered features, learning how to balance
+                            performance, maintainability, and product needs.
+                        </p>
+                        <br />
+                        <p>
+                            My experience includes working as an AI Engineering Intern
+                            at Texas Capital Bank, a Data Engineer at
+                            Accenture, and a Graduate Engineer Intern at LTIMindtree.
+                            I have been incredbily fortunate to work with some really smart people during these stints, and I have learned a lot from them.
                         </p>
                     </div>
-                    <div style={styles.verticalImage}>
+                    <div className="about-image-section">
                         <img src={meNow} style={styles.image} alt="" />
-                        <p>
-                            <sub>
-                                <b>Figure 2:</b> Nabarun Kar
-                            </sub>
-                        </p>
                     </div>
                 </div>
+                <br />
+                <br />
+                <h3>My Hobbies</h3>
+                <br />
+                <p>
+                    Beyond work, I’m interested in films and music. I’m also passionate about
+                    AI/ML,
+                    cloud infrastructure, backend systems, and creative
+                    technology. I enjoy exploring projects that
+                    mix engineering with design and one of my hobbies—whether that’s
+                    experimentation with interactive UI, tooling, or
+                    side projects that start as simple ideas and grow
+                    into full applications.
+                </p>
+                <br />
+                <p>
+                    I’m happiest when I’m building something end-to-end:
+                    defining the problem, designing the system,
+                    implementing it, and polishing the experience.
+                </p>
                 <br />
                 <br />
                 <p>
