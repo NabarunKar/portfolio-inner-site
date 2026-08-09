@@ -66,6 +66,17 @@ const SoftwareProjects: React.FC<SoftwareProjectsProps> = (props) => {
                             </p>
                         </a>
                     </li>
+                    <li>
+                        <a
+                            rel="noreferrer"
+                            target="_blank"
+                            href="https://filmoid.vercel.app"
+                        >
+                            <p>
+                                <b>[Live Demo]</b> - Filmoid
+                            </p>
+                        </a>
+                    </li>
                 </ul>
             </div>
             <div className="text-block">
@@ -77,11 +88,10 @@ const SoftwareProjects: React.FC<SoftwareProjectsProps> = (props) => {
                 <br />
                 <div className="captioned-image">
                     <VideoAsset src={crushedplay} />
-                    <div style={styles.caption}>
+                    <div style={Object.assign({}, styles.caption, styles.crushedPlayCaption)}>
                         <p>
                             <sub>
                                 <b>Figure 2: </b> CrushedPlay demo media
-                                (placeholder).
                             </sub>
                         </p>
                     </div>
@@ -106,6 +116,17 @@ const SoftwareProjects: React.FC<SoftwareProjectsProps> = (props) => {
                         >
                             <p>
                                 <b>[GitHub]</b> - CrushedPlay
+                            </p>
+                        </a>
+                    </li>
+                    <li>
+                        <a
+                            rel="noreferrer"
+                            target="_blank"
+                            href="https://crushedplay.vercel.app/"
+                        >
+                            <p>
+                                <b>[Live Demo]</b> - CrushedPlay
                             </p>
                         </a>
                     </li>
@@ -152,6 +173,39 @@ const SoftwareProjects: React.FC<SoftwareProjectsProps> = (props) => {
                         >
                             <p>
                                 <b>[GitHub]</b> - Template Repository Application
+                            </p>
+                        </a>
+                    </li>
+                    <li>
+                        <a
+                            rel="noreferrer"
+                            target="_blank"
+                            href="https://unstop.com/blog/tvs-credit-epic-it-challenge-season-4-winners"
+                        >
+                            <p>
+                                <b>[Hackathon Winner]</b> - Unstop
+                            </p>
+                        </a>
+                    </li>
+                    <li>
+                        <a
+                            rel="noreferrer"
+                            target="_blank"
+                            href="https://www.businessworld.in/article/tvs-credit-crowns-the-winners-of-the-epic-season-4-campus-challenge-456408"
+                        >
+                            <p>
+                                <b>[Hackathon Winner]</b> - BusinessWorld
+                            </p>
+                        </a>
+                    </li>
+                    <li>
+                        <a
+                            rel="noreferrer"
+                            target="_blank"
+                            href="https://unstop.com/awards/u/nabarun-kar-2716258/2023"
+                        >
+                            <p>
+                                <b>[Award]</b> - Unstop
                             </p>
                         </a>
                     </li>
@@ -205,6 +259,11 @@ const styles: StyleSheetCSS = {
     },
     caption: {
         width: '80%',
+    },
+    crushedPlayCaption: {
+        width: '100%',
+        justifyContent: 'center',
+        textAlign: 'center',
     },
 };
 
