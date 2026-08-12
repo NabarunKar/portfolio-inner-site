@@ -10,6 +10,7 @@ import DesktopShortcut, { DesktopShortcutProps } from './DesktopShortcut';
 import Scrabble from '../applications/Scrabble';
 import { IconName } from '../../assets/icons';
 import Credits from '../applications/Credits';
+import Browser from '../applications/Browser';
 
 export interface DesktopProps {}
 
@@ -52,6 +53,12 @@ const APPLICATIONS: {
         name: 'Scrabble',
         shortcutIcon: 'scrabbleIcon',
         component: Scrabble,
+    },
+    browser: {
+        key: 'browser',
+        name: 'Internet Explorer',
+        shortcutIcon: 'browserIcon',
+        component: Browser,
     },
     credits: {
         key: 'credits',
