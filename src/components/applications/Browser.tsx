@@ -13,7 +13,7 @@ import Window from '../os/Window';
 
 export interface BrowserAppProps extends WindowAppProps {}
 
-const HOME_URL = 'https://nabarunkar.vercel.app/';
+const HOME_URL = 'https://nabarunk.vercel.app/';
 
 type ToolbarButtonProps = {
     icon: string;
