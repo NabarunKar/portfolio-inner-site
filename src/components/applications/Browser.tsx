@@ -1,17 +1,55 @@
 import React, {
     useCallback,
-    useMemo,
     useRef,
     useState,
     useEffect,
 } from 'react';
 import Colors from '../../constants/colors';
+import browserBack from '../../assets/icons/browserBack.png';
+import browserForward from '../../assets/icons/browserForward.png';
+import browserRefresh from '../../assets/icons/browserRefresh.png';
+import browserHome from '../../assets/icons/browserHome.png';
 import Window from '../os/Window';
-import Button from '../os/Button';
 
 export interface BrowserAppProps extends WindowAppProps {}
 
 const HOME_URL = 'https://nabarunkar.vercel.app/';
+
+type ToolbarButtonProps = {
+    icon: string;
+    label: string;
+    onClick: () => void;
+    disabled?: boolean;
+};
+
+const ToolbarButton: React.FC<ToolbarButtonProps> = ({
+    icon,
+    label,
+    onClick,
+    disabled,
+}) => (
+    <button
+        type="button"
+        title={label}
+        aria-label={label}
+        disabled={disabled}
+        onClick={onClick}
+        style={Object.assign(
+            {},
+            styles.toolbarButton,
+            disabled && styles.toolbarButtonDisabled
+        )}
+    >
+        <span style={styles.toolbarButtonInner}>
+            <img
+                src={icon}
+                alt=""
+                aria-hidden="true"
+                style={styles.toolbarButtonIcon}
+            />
+        </span>
+    </button>
+);
 
 /**
  * Normalize a user-entered URL:
@@ -107,13 +145,6 @@ const Browser: React.FC<BrowserAppProps> = (props) => {
 
     const iframeRef = useRef<HTMLIFrameElement | null>(null);
 
-    // Content-area size: window inner area minus our toolbar height.
-    const TOOLBAR_HEIGHT = 40;
-    const iframeHeight = useMemo(
-        () => Math.max(0, height - TOOLBAR_HEIGHT - 96), // 96 ≈ window chrome (title bar + borders + bottom bar)
-        [height]
-    );
-
     return (
         <Window
             top={40}
@@ -133,13 +164,31 @@ const Browser: React.FC<BrowserAppProps> = (props) => {
                 {/* Win95-style browser toolbar */}
                 <div style={styles.toolbar}>
                     <div style={styles.buttonGroup}>
-                        <Button text="Back" onClick={goBack} />
+                        <ToolbarButton
+                            icon={browserBack}
+                            label="Back"
+                            onClick={goBack}
+                            disabled={!canGoBack}
+                        />
                         <div style={styles.buttonSpacer} />
-                        <Button text="Forward" onClick={goForward} />
+                        <ToolbarButton
+                            icon={browserForward}
+                            label="Forward"
+                            onClick={goForward}
+                            disabled={!canGoForward}
+                        />
                         <div style={styles.buttonSpacer} />
-                        <Button text="Refresh" onClick={refresh} />
+                        <ToolbarButton
+                            icon={browserRefresh}
+                            label="Refresh"
+                            onClick={refresh}
+                        />
                         <div style={styles.buttonSpacer} />
-                        <Button text="Home" onClick={goHome} />
+                        <ToolbarButton
+                            icon={browserHome}
+                            label="Home"
+                            onClick={goHome}
+                        />
                     </div>
 
                     <form
@@ -162,7 +211,9 @@ const Browser: React.FC<BrowserAppProps> = (props) => {
                             </div>
                         </div>
                         <div style={styles.goButtonWrapper}>
-                            <Button text="Go" onClick={() => goTo(addressInput)} />
+                            <button type="submit" style={styles.goButton}>
+                                Go
+                            </button>
                         </div>
                     </form>
                 </div>
@@ -170,11 +221,7 @@ const Browser: React.FC<BrowserAppProps> = (props) => {
                 {/* Cross-origin iframe. No sandbox — target is a trusted, publicly-hosted
                     static site and we want its scripts/fonts to work normally. */}
                 <div style={styles.iframeInsetOuter}>
-                    <div
-                        style={Object.assign({}, styles.iframeInsetInner, {
-                            height: iframeHeight,
-                        })}
-                    >
+                    <div style={styles.iframeInsetInner}>
                         <iframe
                             key={`${currentUrl}::${reloadNonce}`}
                             ref={iframeRef}
@@ -195,13 +242,14 @@ const styles: StyleSheetCSS = {
         flexDirection: 'column',
         width: '100%',
         height: '100%',
+        minHeight: 0,
         backgroundColor: Colors.lightGray,
     },
     toolbar: {
         flexDirection: 'row',
         alignItems: 'center',
-        padding: 4,
-        gap: 8,
+        padding: '3px 4px',
+        gap: 4,
         backgroundColor: Colors.lightGray,
         borderBottom: `1px solid ${Colors.darkGray}`,
         flexShrink: 0,
@@ -211,18 +259,53 @@ const styles: StyleSheetCSS = {
         alignItems: 'center',
     },
     buttonSpacer: {
-        width: 4,
+        width: 2,
+    },
+    toolbarButton: {
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        width: 24,
+        height: 22,
+        padding: 0,
+        border: `1px solid ${Colors.black}`,
+        borderTopColor: Colors.white,
+        borderLeftColor: Colors.white,
+        backgroundColor: Colors.lightGray,
+        cursor: 'pointer',
+        boxSizing: 'border-box',
+    },
+    toolbarButtonDisabled: {
+        cursor: 'not-allowed',
+        opacity: 0.45,
+    },
+    toolbarButtonInner: {
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        width: '100%',
+        height: '100%',
+        border: `1px solid ${Colors.darkGray}`,
+        borderTopColor: Colors.lightGray,
+        borderLeftColor: Colors.lightGray,
+        boxSizing: 'border-box',
+    },
+    toolbarButtonIcon: {
+        width: 16,
+        height: 16,
+        imageRendering: 'pixelated',
     },
     addressForm: {
+        display: 'flex',
         flex: 1,
         flexDirection: 'row',
         alignItems: 'center',
-        marginLeft: 8,
+        marginLeft: 5,
     },
     addressLabel: {
         fontFamily: 'MSSerif',
-        fontSize: 12,
-        marginRight: 6,
+        fontSize: 11,
+        marginRight: 4,
         color: 'black',
     },
     addressBorderOuter: {
@@ -237,7 +320,7 @@ const styles: StyleSheetCSS = {
         border: `1px solid ${Colors.white}`,
         borderTopColor: Colors.lightGray,
         borderLeftColor: Colors.lightGray,
-        padding: '2px 4px',
+        padding: '1px 4px',
         alignItems: 'center',
     },
     addressInput: {
@@ -245,13 +328,30 @@ const styles: StyleSheetCSS = {
         border: 'none',
         outline: 'none',
         fontFamily: 'MSSerif',
-        fontSize: 12,
+        fontSize: 11,
         width: '100%',
         backgroundColor: 'white',
         color: 'black',
+        padding: 0,
+        boxShadow: 'none',
     },
     goButtonWrapper: {
-        marginLeft: 6,
+        marginLeft: 4,
+    },
+    goButton: {
+        height: 22,
+        minWidth: 32,
+        padding: '0 7px',
+        border: `1px solid ${Colors.black}`,
+        borderTopColor: Colors.white,
+        borderLeftColor: Colors.white,
+        backgroundColor: Colors.lightGray,
+        color: 'black',
+        cursor: 'pointer',
+        fontFamily: 'MSSerif',
+        fontSize: 11,
+        lineHeight: '18px',
+        boxSizing: 'border-box',
     },
     iframeInsetOuter: {
         flex: 1,
@@ -260,6 +360,7 @@ const styles: StyleSheetCSS = {
         borderLeftColor: Colors.darkGray,
         margin: 4,
         backgroundColor: 'white',
+        minHeight: 0,
     },
     iframeInsetInner: {
         flex: 1,
@@ -268,6 +369,7 @@ const styles: StyleSheetCSS = {
         borderLeftColor: Colors.lightGray,
         overflow: 'hidden',
         backgroundColor: 'white',
+        minHeight: 0,
     },
     iframe: {
         border: 'none',
