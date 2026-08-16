@@ -31,30 +31,31 @@ const About: React.FC<AboutProps> = (props) => {
             <div className="text-block">
                 <h3>About Me</h3>
                 <br />
-                <div className="about-container">
-                    <div className="about-text-section">
-                        <p>
-                            I enjoy building products that are reliable, scalable, and genuinely useful. And also deploying them! Over the past few years I’ve worked across full-stack development, backend services, and applied AI, and I’m especially interested in turning prototypes into production-ready systems. I believe I have learnt a lot from deploying these projects, almost as much as from the actual development itself.
-                        </p>
-                        <br />
-                        <p>
-                            Professionally, I’ve worked in roles ranging from
-                            application engineering to applied AI. Most recently, I’ve
-                            contributed to projects involving backend services, data
-                            pipelines, and AI-powered features, learning how to balance
-                            performance, maintainability, and product needs.
-                        </p>
-                        <br />
-                        <p>
-                            My experience includes working as an AI Engineering Intern
-                            at Texas Capital Bank, a Data Engineer at
-                            Accenture, and a Graduate Engineer Intern at LTIMindtree.
-                            I have been incredbily fortunate to work with some really smart people during these stints, and I have learned a lot from them.
-                        </p>
-                    </div>
-                    <div className="about-image-section">
-                        <img src={meNow} style={styles.image} alt="" />
-                    </div>
+                <div className="about-flow">
+                    <img
+                        className="about-portrait"
+                        src={meNow}
+                        style={styles.image}
+                        alt=""
+                    />
+                    <p>
+                        I enjoy building products that are reliable, scalable, and genuinely useful. And also deploying them! Over the past few years I’ve worked across full-stack development, backend services, and applied AI, and I’m especially interested in turning prototypes into production-ready systems. I believe I have learnt a lot from deploying these projects, almost as much as from the actual development itself.
+                    </p>
+                    <br />
+                    <p>
+                        Professionally, I’ve worked in roles ranging from
+                        application engineering to applied AI. Most recently, I’ve
+                        contributed to projects involving backend services, data
+                        pipelines, and AI-powered features, learning how to balance
+                        performance, maintainability, and product needs.
+                    </p>
+                    <br />
+                    <p>
+                        My experience includes working as an AI Engineering Intern
+                        at Texas Capital Bank, a Data Engineer at
+                        Accenture, and a Graduate Engineer Intern at LTIMindtree.
+                        I have been incredbily fortunate to work with some really smart people during these stints, and I have learned a lot from them.
+                    </p>
                 </div>
                 <br />
                 <br />

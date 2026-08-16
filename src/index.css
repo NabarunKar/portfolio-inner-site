@@ -66,6 +66,15 @@ p b {
     font-family: MillenniumBold, 'Times New Roman', Times, serif;
 }
 
+.site-page-content p {
+    font-family: var(--body-reading-font);
+}
+
+.site-page-content p b {
+    font-family: var(--body-reading-font);
+    font-weight: 600;
+}
+
 .showcase-header {
     font-family: lores-15-bold-alt-oakland;
     font-size: 15px;
@@ -110,6 +119,7 @@ li {
 }
 
 :root {
+    --body-reading-font: 'IBM Plex Mono', 'Courier New', monospace;
     --button-highlight: #ffffff;
     --button-face: #747474;
     --button-shadow: #808080;
@@ -400,28 +410,28 @@ input:active {
     cursor: pointer;
     color: white;
 }
-.about-container {
-    display: flex;
-    flex-direction: row;
-    gap: 32px;
+.about-flow {
+    display: block;
 }
-.about-text-section {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
+
+.about-flow::after {
+    content: '';
+    display: block;
+    clear: both;
 }
-.about-image-section {
-    flex: 0.8;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+
+.about-portrait {
+    float: right;
+    width: min(36%, 340px) !important;
+    margin: 0 0 16px 24px;
 }
-@media (max-width: 768px) {
-    .about-container {
-        flex-direction: column;
-    }
-    .about-image-section {
-        flex: 1;
-        margin-top: 16px;
+
+@media (max-width: 860px) {
+    .about-portrait {
+        float: none;
+        display: block;
+        width: 100% !important;
+        max-width: 360px;
+        margin: 0 auto 24px;
     }
 }
